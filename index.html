@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Новосёл — ремонт квартир в новостройках под ключ за 60 дней</title>
+<meta name="description" content="Ремонт квартир в новостройках под ключ: бесплатная приёмка у застройщика, фиксированные пакеты с ценой за м², сдача за 60 дней, неустойка за просрочку, гарантия 3 года.">
+<link rel="canonical" href="https://novosel-remont.ru/">
+<meta name="theme-color" content="#2456d6">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="Новосёл">
+<meta property="og:title" content="Новосёл — ремонт квартир в новостройках под ключ за 60 дней">
+<meta property="og:description" content="Приёмка у застройщика бесплатно, фиксированная цена за м², срок с неустойкой, гарантия 3 года.">
+<meta property="og:url" content="https://novosel-remont.ru/">
+<meta name="twitter:card" content="summary">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Exo+2:wght@600;700;800&family=Golos+Text:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@600;700;800&family=Golos+Text:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#fbfcfe;
+  --ink:#101828;
+  --ink-soft:#5b6474;
+  --line:#dde4f0;
+  --blue:#2456d6;
+  --blue-dark:#1a41a8;
+  --blue-soft:#e9eefb;
+  --blue-ghost:#f2f5fc;
+  --orange:#f57f2c;
+  --radius:14px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Golos Text',system-ui,sans-serif;background:var(--bg);color:var(--ink);
+  line-height:1.65;font-size:16px;-webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{font-family:'Exo 2',sans-serif;font-weight:700;line-height:1.16;letter-spacing:-.01em}
+.mono{font-family:'JetBrains Mono',monospace}
+img,svg{max-width:100%;vertical-align:middle}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1150px;margin:0 auto;padding:0 24px}
+
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  padding:16px 30px;border-radius:10px;font-weight:700;font-size:15px;
+  cursor:pointer;border:none;transition:all .2s;font-family:'Golos Text',sans-serif;
+}
+.btn svg{transition:transform .2s}
+.btn:hover svg{transform:translateX(4px)}
+.btn-blue{background:var(--blue);color:#fff;box-shadow:0 12px 26px -12px rgba(36,86,214,.55)}
+.btn-blue:hover{background:var(--blue-dark)}
+.btn-line{background:#fff;color:var(--ink);border:1.5px solid var(--line)}
+.btn-line:hover{border-color:var(--blue);color:var(--blue)}
+.btn-orange{background:var(--orange);color:#fff}
+.btn-orange:hover{background:#d96a1c}
+
+.section{padding:94px 0}
+.blabel{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:'JetBrains Mono',monospace;font-size:11.5px;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-bottom:18px;
+}
+.blabel::before{content:"//";color:var(--orange)}
+.section h2{font-size:clamp(26px,3.4vw,40px);margin-bottom:16px;max-width:720px}
+.section .lead{color:var(--ink-soft);font-size:17px;max-width:570px}
+.section-head{margin-bottom:50px}
+.rv{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.rv.in{opacity:1;transform:none}
+
+/* header */
+header{
+  position:sticky;top:0;z-index:50;background:rgba(251,252,254,.92);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--line);
+}
+.nav{display:flex;align-items:center;justify-content:space-between;height:72px}
+.logo{font-family:'Exo 2',sans-serif;font-size:21px;font-weight:800;display:flex;align-items:center;gap:10px}
+.logo .k{
+  width:30px;height:30px;border:2px solid var(--blue);border-radius:7px;position:relative;
+}
+.logo .k::after{
+  content:"";position:absolute;inset:5px;background:var(--blue);border-radius:2px;
+}
+.nav-links{display:flex;gap:26px;list-style:none}
+.nav-links a{font-size:14px;font-weight:600;color:var(--ink-soft)}
+.nav-links a:hover{color:var(--blue)}
+.nav-cta{display:flex;align-items:center;gap:14px}
+.nav-btn{padding:11px 20px;font-size:14px}
+.burger{display:none;background:none;border:none;cursor:pointer;color:var(--ink);padding:6px}
+
+/* hero — blueprint */
+.hero{padding:80px 0 76px;position:relative;overflow:hidden}
+.hero::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:
+    linear-gradient(var(--line) 1px,transparent 1px),
+    linear-gradient(90deg,var(--line) 1px,transparent 1px),
+    linear-gradient(rgba(221,228,240,.5) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(221,228,240,.5) 1px,transparent 1px);
+  background-size:80px 80px,80px 80px,16px 16px,16px 16px;
+  -webkit-mask-image:radial-gradient(900px 560px at 72% 40%,#000 20%,transparent 78%);
+          mask-image:radial-gradient(900px 560px at 72% 40%,#000 20%,transparent 78%);
+}
+.hero-grid{display:grid;grid-template-columns:1.04fr .96fr;gap:56px;align-items:center;position:relative}
+.hero .stamp-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:26px}
+.stampchip{
+  font-family:'JetBrains Mono',monospace;font-size:11.5px;font-weight:700;
+  border:1.5px solid var(--blue);color:var(--blue);border-radius:6px;padding:6px 13px;
+  text-transform:uppercase;letter-spacing:.08em;background:rgba(255,255,255,.7);
+}
+.stampchip.or{border-color:var(--orange);color:var(--orange)}
+.hero h1{font-size:clamp(32px,4.6vw,54px);font-weight:800;margin-bottom:22px}
+.hero h1 span{color:var(--blue)}
+.hero p{font-size:18px;color:var(--ink-soft);max-width:500px;margin-bottom:32px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:44px}
+.hero-stats{display:flex;gap:0;flex-wrap:wrap}
+.stat{padding:0 30px;border-left:1px dashed var(--line)}
+.stat:first-child{padding-left:0;border-left:none}
+.stat b{display:block;font-family:'Exo 2',sans-serif;font-size:28px;font-weight:800}
+.stat b i{font-style:normal;color:var(--blue)}
+.stat span{font-size:13px;color:var(--ink-soft)}
+
+/* blueprint plan card */
+.bp{
+  background:#fff;border:1.5px solid var(--blue);border-radius:16px;position:relative;
+  box-shadow:14px 14px 0 var(--blue-soft);overflow:hidden;
+}
+.bp-head{
+  display:flex;justify-content:space-between;align-items:center;gap:10px;
+  padding:16px 22px;border-bottom:1.5px solid var(--blue);
+  font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;
+  text-transform:uppercase;letter-spacing:.08em;color:var(--blue);
+}
+.bp-plan{position:relative;height:250px;margin:22px;border:1.5px solid var(--blue)}
+.bp-plan::before{
+  content:"";position:absolute;inset:0;
+  background-image:linear-gradient(var(--blue-soft) 1px,transparent 1px),linear-gradient(90deg,var(--blue-soft) 1px,transparent 1px);
+  background-size:25px 25px;
+}
+.room{position:absolute;border:1.5px solid var(--blue);display:flex;align-items:flex-end;padding:8px}
+.room span{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;color:var(--blue);text-transform:uppercase}
+.r1{left:0;top:0;width:46%;height:58%;border-left:none;border-top:none}
+.r2{left:46%;top:0;right:0;height:38%;border-right:none;border-top:none}
+.r3{left:46%;top:38%;right:0;height:62%;border-right:none;border-bottom:none}
+.r4{left:0;top:58%;width:46%;bottom:0;border-left:none;border-bottom:none}
+.bp-dim{
+  position:absolute;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--orange);
+  font-weight:700;
+}
+.bp-foot{
+  padding:16px 22px;border-top:1.5px dashed var(--line);display:flex;
+  justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center;
+}
+.bp-foot .t{font-size:13px;color:var(--ink-soft)}
+.bp-foot b{font-family:'Exo 2',sans-serif;font-size:20px;font-weight:800;color:var(--blue)}
+.bp .stamp{
+  position:absolute;right:18px;top:66px;transform:rotate(-7deg);
+  border:2px solid var(--orange);color:var(--orange);border-radius:6px;
+  font-family:'JetBrains Mono',monospace;font-size:10.5px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;padding:6px 11px;background:rgba(255,255,255,.85);
+}
+
+/* приёмка банер */
+.accept{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--blue-ghost)}
+.accept-row{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:22px 0;flex-wrap:wrap}
+.accept-row .t{display:flex;gap:14px;align-items:center;font-size:15px;font-weight:600}
+.accept-row .t .ic{
+  width:42px;height:42px;border-radius:10px;background:#fff;border:1.5px solid var(--blue);
+  color:var(--blue);display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.accept-row .t small{display:block;font-weight:400;font-size:13px;color:var(--ink-soft)}
+
+/* packages */
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
+.plan{
+  background:#fff;border:1.5px solid var(--line);border-radius:16px;
+  display:flex;flex-direction:column;position:relative;overflow:hidden;
+  transition:transform .22s,box-shadow .22s,border-color .22s;
+}
+.plan:hover{transform:translateY(-4px);border-color:var(--blue);box-shadow:0 22px 48px -26px rgba(16,24,40,.3)}
+.plan-head{
+  padding:26px 28px 20px;border-bottom:1.5px dashed var(--line);
+}
+.plan-head .code{
+  font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:var(--orange);
+  text-transform:uppercase;letter-spacing:.1em;display:block;margin-bottom:10px;
+}
+.plan h3{font-size:20px;margin-bottom:4px}
+.plan .who{font-size:13.5px;color:var(--ink-soft)}
+.plan-body{padding:22px 28px 28px;display:flex;flex-direction:column;flex:1}
+.price{font-family:'Exo 2',sans-serif;font-size:32px;font-weight:800}
+.price small{font-family:'Golos Text',sans-serif;font-size:13.5px;color:var(--ink-soft);font-weight:500}
+.plan .term{
+  font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;color:var(--blue);
+  margin-top:4px;
+}
+.plan ul{list-style:none;margin:20px 0 26px;display:grid;gap:10px;flex:1}
+.plan li{display:flex;gap:10px;font-size:14px;color:var(--ink-soft)}
+.plan li::before{content:"▪";color:var(--blue);flex-shrink:0}
+.plan.featured{border-color:var(--blue);border-width:2px}
+.plan.featured .plan-head{background:var(--blue);border-bottom-color:var(--blue)}
+.plan.featured .plan-head .code{color:#ffd9b8}
+.plan.featured h3,.plan.featured .who{color:#fff}
+.plan.featured .who{opacity:.75}
+
+/* timeline 60 дней */
+.tl-band{background:var(--ink);color:#c6cddb;border-radius:26px;overflow:hidden;position:relative}
+.tl-band::before{
+  content:"";position:absolute;inset:0;
+  background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);
+  background-size:64px 64px;
+}
+.tl-inner{padding:72px 60px;position:relative}
+.tl-band .blabel{color:#7ea0f5}
+.tl-band h2{color:#fff}
+.tl-band .lead{color:#8b93a5}
+.tline{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin-top:48px;position:relative}
+.tline::before{
+  content:"";position:absolute;left:0;right:0;top:19px;height:2px;
+  background:repeating-linear-gradient(90deg,var(--blue) 0 10px,transparent 10px 18px);
+}
+.tstep{position:relative;padding:0 18px 0 0}
+.tstep .d{
+  width:40px;height:40px;border-radius:50%;background:var(--ink);border:2px solid var(--blue);
+  color:#fff;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;margin-bottom:18px;position:relative;
+}
+.tstep:last-child .d{border-color:var(--orange);color:var(--orange)}
+.tstep h3{font-size:16px;color:#fff;margin-bottom:6px}
+.tstep p{font-size:13.5px;color:#8b93a5}
+
+/* guarantees */
+.g-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.g-item{
+  border:1.5px solid var(--line);border-radius:var(--radius);padding:28px 26px;
+  background:#fff;position:relative;transition:border-color .2s;
+}
+.g-item:hover{border-color:var(--blue)}
+.g-item .code{
+  font-family:'JetBrains Mono',monospace;font-size:10.5px;font-weight:700;color:var(--orange);
+  text-transform:uppercase;letter-spacing:.1em;display:block;margin-bottom:16px;
+}
+.g-item h3{font-size:17px;margin-bottom:8px}
+.g-item p{font-size:14px;color:var(--ink-soft)}
+
+/* quote */
+.quote-box{max-width:780px;margin:0 auto;text-align:center}
+.quote-box .stars{color:var(--orange);font-size:16px;letter-spacing:5px;margin-bottom:22px}
+.quote-box blockquote{
+  font-family:'Exo 2',sans-serif;font-weight:600;font-size:clamp(18px,2.4vw,25px);
+  line-height:1.45;margin-bottom:26px;
+}
+.quote-box blockquote em{font-style:normal;color:var(--blue)}
+.quote-box .author b{display:block;font-size:15px}
+.quote-box .author span{font-size:13.5px;color:var(--ink-soft)}
+
+/* faq */
+.faq-list{max-width:780px}
+.faq-item{border-bottom:1px solid var(--line)}
+.faq-q{
+  width:100%;background:none;border:none;text-align:left;cursor:pointer;
+  padding:22px 44px 22px 0;font-family:'Golos Text',sans-serif;font-size:16.5px;
+  font-weight:600;color:var(--ink);position:relative;transition:color .2s;
+}
+.faq-q:hover{color:var(--blue)}
+.faq-q::after{
+  content:"";position:absolute;right:6px;top:50%;width:11px;height:11px;
+  border-right:2px solid var(--blue);border-bottom:2px solid var(--blue);
+  transform:translateY(-70%) rotate(45deg);transition:transform .25s;
+}
+.faq-item.open .faq-q::after{transform:translateY(-30%) rotate(225deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease}
+.faq-a p{padding:0 0 22px;font-size:15px;color:var(--ink-soft);max-width:640px}
+
+/* contact */
+.contact{background:var(--blue-ghost)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+.contact-info{display:grid;margin-top:6px}
+.contact-info .row{padding:16px 0;border-bottom:1px dashed var(--line);display:flex;justify-content:space-between;gap:16px;align-items:baseline;flex-wrap:wrap}
+.contact-info .row:last-child{border-bottom:none}
+.contact-info .row b{font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-soft);font-weight:700}
+.contact-info .row span{font-size:16.5px;font-weight:600}
+.form{
+  background:#fff;border:1.5px solid var(--blue);border-radius:16px;padding:38px 34px;
+  box-shadow:12px 12px 0 var(--blue-soft);
+}
+.form h3{font-size:20px;margin-bottom:8px}
+.form>p{font-size:14px;color:var(--ink-soft);margin-bottom:24px}
+.form label{display:block;font-size:13px;font-weight:700;margin-bottom:7px}
+.form input,.form textarea{
+  width:100%;padding:14px 16px;border:1.5px solid var(--line);border-radius:10px;
+  font-family:inherit;font-size:15px;margin-bottom:18px;background:var(--bg);
+  color:var(--ink);transition:border-color .2s,box-shadow .2s;
+}
+.form input:focus,.form textarea:focus{
+  outline:none;border-color:var(--blue);background:#fff;
+  box-shadow:0 0 0 3px rgba(36,86,214,.14);
+}
+.form .btn{width:100%}
+.form .fine{font-size:12px;color:var(--ink-soft);margin-top:12px;text-align:center;line-height:1.5}
+
+/* согласие в форме */
+.consent{display:flex;gap:10px;align-items:flex-start;margin:-4px 0 18px}
+.consent input{
+  width:18px;height:18px;margin:3px 0 0;flex-shrink:0;accent-color:var(--blue);
+  border:none;padding:0;background:transparent;border-radius:4px;
+}
+.consent label{font-size:12.5px;font-weight:400;color:var(--ink-soft);line-height:1.5;margin:0}
+.consent a{color:var(--blue);text-decoration:underline}
+
+/* cookie-баннер */
+.cookie{
+  position:fixed;left:16px;right:16px;bottom:16px;z-index:80;
+  background:var(--ink);color:#c6cddb;border-radius:14px;
+  padding:20px 24px;display:none;gap:20px;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;box-shadow:0 24px 50px -20px rgba(16,24,40,.5);max-width:920px;margin:0 auto;
+}
+.cookie.show{display:flex;animation:cookieUp .35s ease}
+@keyframes cookieUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.cookie p{font-size:13.5px;margin:0;max-width:600px}
+.cookie a{color:var(--orange);text-decoration:underline}
+.cookie .btn{padding:12px 26px;font-size:14px;white-space:nowrap}
+@media(prefers-reduced-motion:reduce){
+  .cookie.show{animation:none}
+  .rv{transition:none}
+}
+
+footer{padding:34px 0;font-size:13.5px;color:var(--ink-soft);border-top:1px solid var(--line)}
+.footer-row{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+.footer-links{display:flex;gap:18px;flex-wrap:wrap}
+.footer-links a{color:var(--ink-soft);text-decoration:underline}
+.footer-links a:hover{color:var(--blue)}
+
+@media(max-width:960px){
+  .hero-grid,.contact-grid{grid-template-columns:1fr;gap:44px}
+  .plans,.g-grid{grid-template-columns:1fr}
+  .tline{grid-template-columns:1fr;gap:26px}
+  .tline::before{left:19px;right:auto;top:0;bottom:0;width:2px;height:auto;
+    background:repeating-linear-gradient(180deg,var(--blue) 0 10px,transparent 10px 18px)}
+  .tstep{padding-left:60px}
+  .tstep .d{position:absolute;left:0;top:0;margin:0}
+  .tl-inner{padding:52px 34px}
+  .nav-links,.nav-btn{display:none}
+  .nav-links.open{
+    display:flex;position:absolute;top:72px;left:0;right:0;flex-direction:column;
+    background:var(--bg);border-bottom:1px solid var(--line);padding:22px 24px;gap:16px;
+  }
+  .burger{display:block}
+}
+@media(max-width:620px){
+  .section{padding:60px 0}
+  .hero{padding:52px 0 48px}
+  .stat{padding:0 16px}
+  .stat:first-child{padding-left:0}
+  .tl-band{border-radius:18px}
+  .tl-inner{padding:44px 24px}
+  .bp{box-shadow:8px 8px 0 var(--blue-soft)}
+}
+</style>
+</head>
+<body>
+
+<header id="header">
+  <div class="wrap nav">
+    <a href="#" class="logo"><span class="k"></span>Новосёл</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#accept">Приёмка</a></li>
+      <li><a href="#packages">Пакеты</a></li>
+      <li><a href="#timeline">Сроки</a></li>
+      <li><a href="#faq">Вопросы</a></li>
+      <li><a href="#contact">Контакты</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="#contact" class="btn btn-blue nav-btn">Рассчитать по плану</a>
+      <button class="burger" id="burger" aria-label="Меню">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="rv in">
+      <div class="stamp-row">
+        <span class="stampchip">Новостройки</span>
+        <span class="stampchip or">От застройщика до заселения</span>
+      </div>
+      <h1>Ремонт в новостройке <span>за 60 дней</span> — от бетона до заселения</h1>
+      <p>Специализируемся на квартирах от застройщика: примем квартиру с инженером, сделаем ремонт по фиксированному пакету и сдадим точно в срок — неустойка в договоре.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn btn-blue">Рассчитать по плану квартиры
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="#packages" class="btn btn-line">Пакеты и цены</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><b>320<i>+</i></b><span>квартир в новостройках</span></div>
+        <div class="stat"><b>60 <i>дней</i></b><span>средний срок сдачи</span></div>
+        <div class="stat"><b>38 <i>ЖК</i></b><span>Москвы и области знаем изнутри</span></div>
+      </div>
+    </div>
+    <div class="rv in">
+      <div class="bp">
+        <div class="bp-head">
+          <span>Проект № 2043-Н</span>
+          <span>1:100</span>
+        </div>
+        <span class="stamp">Смета зафиксирована</span>
+        <div class="bp-plan">
+          <div class="room r1"><span>Гостиная · 18,4 м²</span></div>
+          <div class="room r2"><span>Кухня · 11,2 м²</span></div>
+          <div class="room r3"><span>Спальня · 14,8 м²</span></div>
+          <div class="room r4"><span>С/у · 4,6 м²</span></div>
+          <span class="bp-dim" style="left:12px;top:6px">6 400</span>
+          <span class="bp-dim" style="right:12px;bottom:6px">4 200</span>
+        </div>
+        <div class="bp-foot">
+          <span class="t">ЖК «Первый квартал» · 52 м² · пакет «Под ключ»</span>
+          <b>1 070 000 ₽ · 58 дней</b>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="accept" id="accept">
+  <div class="wrap accept-row">
+    <div class="t">
+      <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 15l2 2 4-4"/></svg></span>
+      <div>Бесплатная приёмка квартиры с инженером<small>Найдём недоделки застройщика до подписания акта — в среднем это 12–40 замечаний и сэкономленные вам деньги</small></div>
+    </div>
+    <a href="#contact" class="btn btn-orange" style="padding:13px 26px;font-size:14px">Записаться на приёмку</a>
+  </div>
+</div>
+
+<section class="section" id="packages">
+  <div class="wrap">
+    <div class="section-head rv">
+      <span class="blabel">Пакеты</span>
+      <h2>Три пакета с фиксированной ценой за м²</h2>
+      <p class="lead">Цена и срок закрепляются в договоре после бесплатного замера. Материалы черновые — включены.</p>
+    </div>
+    <div class="plans">
+      <div class="plan rv">
+        <div class="plan-head">
+          <span class="code">PKG-01 · White Box</span>
+          <h3>Подготовка</h3>
+          <p class="who">Стяжка, штукатурка, электрика, сантехразводка</p>
+        </div>
+        <div class="plan-body">
+          <div class="price">от 9 900 ₽ <small>/ м²</small></div>
+          <span class="term">СРОК: 30–40 ДНЕЙ</span>
+          <ul>
+            <li>Возведение перегородок</li>
+            <li>Стяжка и штукатурка по маякам</li>
+            <li>Полная электрика и сантехразводка</li>
+            <li>Готово под чистовую отделку</li>
+          </ul>
+          <a href="#contact" class="btn btn-line">Рассчитать</a>
+        </div>
+      </div>
+      <div class="plan featured rv">
+        <div class="plan-head">
+          <span class="code">PKG-02 · Популярный</span>
+          <h3>Под ключ</h3>
+          <p class="who">От бетона до заселения</p>
+        </div>
+        <div class="plan-body">
+          <div class="price">от 18 500 ₽ <small>/ м²</small></div>
+          <span class="term">СРОК: 55–70 ДНЕЙ</span>
+          <ul>
+            <li>Всё из пакета White Box</li>
+            <li>Чистовая отделка: полы, стены, потолки</li>
+            <li>Двери, сантехника, свет — установка</li>
+            <li>Уборка и вывоз мусора</li>
+            <li>Помощь с выбором материалов</li>
+          </ul>
+          <a href="#contact" class="btn btn-blue">Рассчитать</a>
+        </div>
+      </div>
+      <div class="plan rv">
+        <div class="plan-head">
+          <span class="code">PKG-03 · Максимум</span>
+          <h3>Под ключ + мебель</h3>
+          <p class="who">Заезжай и живи — вплоть до штор</p>
+        </div>
+        <div class="plan-body">
+          <div class="price">от 27 900 ₽ <small>/ м²</small></div>
+          <span class="term">СРОК: 75–90 ДНЕЙ</span>
+          <ul>
+            <li>Всё из пакета «Под ключ»</li>
+            <li>Дизайн-проект в подарок</li>
+            <li>Кухня и шкафы по размерам</li>
+            <li>Мебель, техника, шторы, декор</li>
+          </ul>
+          <a href="#contact" class="btn btn-line">Рассчитать</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="timeline" style="padding-top:0">
+  <div class="wrap">
+    <div class="tl-band rv">
+      <div class="tl-inner">
+        <span class="blabel">График работ</span>
+        <h2>60 дней от бетона до заселения</h2>
+        <p class="lead">Работаем по графику из договора — вы видите его в личном кабинете вместе с фотоотчётами.</p>
+        <div class="tline">
+          <div class="tstep">
+            <span class="d">Д-0</span>
+            <h3>Приёмка и замер</h3>
+            <p>Принимаем квартиру у застройщика, обмеряем, фиксируем смету.</p>
+          </div>
+          <div class="tstep">
+            <span class="d">Д-5</span>
+            <h3>Перегородки и черновая</h3>
+            <p>Возведение стен, штробление, электрика, сантехразводка.</p>
+          </div>
+          <div class="tstep">
+            <span class="d">Д-25</span>
+            <h3>Стяжка и штукатурка</h3>
+            <p>Выравнивание по маякам, подготовка под чистовую.</p>
+          </div>
+          <div class="tstep">
+            <span class="d">Д-40</span>
+            <h3>Чистовая отделка</h3>
+            <p>Плитка, полы, стены, потолки, двери, сантехника, свет.</p>
+          </div>
+          <div class="tstep">
+            <span class="d">Д-60</span>
+            <h3>Сдача</h3>
+            <p>Уборка, приёмка по чек-листу, гарантийный сертификат на 3 года.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head rv">
+      <span class="blabel">Гарантии</span>
+      <h2>Почему новостройки — это к нам</h2>
+    </div>
+    <div class="g-grid">
+      <div class="g-item rv">
+        <span class="code">GAR-01</span>
+        <h3>Знаем ваши ЖК изнутри</h3>
+        <p>Работали в 38 жилых комплексах: знаем регламенты УК, часы шумных работ, грузовые лифты и особенности стен вашего застройщика.</p>
+      </div>
+      <div class="g-item rv">
+        <span class="code">GAR-02</span>
+        <h3>Смета не растёт</h3>
+        <p>В новостройке нет скрытых сюрпризов старого фонда — поэтому мы честно фиксируем цену пакета в договоре раз и навсегда.</p>
+      </div>
+      <div class="g-item rv">
+        <span class="code">GAR-03</span>
+        <h3>Срок с неустойкой</h3>
+        <p>За каждый день просрочки платим 3 000 ₽. Аренда съёмной квартиры не должна затягиваться по нашей вине.</p>
+      </div>
+      <div class="g-item rv">
+        <span class="code">GAR-04</span>
+        <h3>Усадка учтена</h3>
+        <p>Технологии для нового дома: скользящие направляющие, армирование, правильные материалы — трещины через год не появятся.</p>
+      </div>
+      <div class="g-item rv">
+        <span class="code">GAR-05</span>
+        <h3>Онлайн-контроль</h3>
+        <p>Камеры на объекте, график и фотоотчёты в личном кабинете — следите за ремонтом, не приезжая.</p>
+      </div>
+      <div class="g-item rv">
+        <span class="code">GAR-06</span>
+        <h3>Гарантия 3 года</h3>
+        <p>На все работы по договору. Дефект по нашей вине устраняем бесплатно в течение 14 дней.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <div class="quote-box rv">
+      <div class="stars">★★★★★</div>
+      <blockquote>«Купили квартиру в бетоне, жили в съёмной. „Новосёл“ принял квартиру за нас — нашли 23 замечания застройщику, — а через <em>59 дней</em> мы уже переехали. В смете не изменилось ни рубля.»</blockquote>
+      <div class="author">
+        <b>Игорь и Алина</b>
+        <span>двушка 52 м², ЖК «Первый квартал», пакет «Под ключ»</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="faq" style="padding-top:24px">
+  <div class="wrap">
+    <div class="section-head rv">
+      <span class="blabel">FAQ</span>
+      <h2>Частые вопросы</h2>
+    </div>
+    <div class="faq-list rv">
+      <div class="faq-item">
+        <button class="faq-q">Квартира ещё не сдана. Когда к вам обращаться?</button>
+        <div class="faq-a"><p>Лучше за месяц до выдачи ключей: успеем сделать проект, посчитать смету и забронировать бригаду. На приёмку выйдем вместе с вами в день выдачи.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">У меня отделка White Box от застройщика. Пакет будет дешевле?</button>
+        <div class="faq-a"><p>Да, вы платите только за чистовую часть — от ~11 000 ₽/м². На замере проверим качество подготовки застройщика: иногда её приходится частично переделывать, это покажем сразу.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Дом ещё усаживается. Не потрескается ли ремонт?</button>
+        <div class="faq-a"><p>Для новостроек используем технологии, рассчитанные на усадку: армирование штукатурки, скользящий каркас потолков, эластичные материалы в швах. На это и даём гарантию 3 года.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Можно ли платить в рассрочку?</button>
+        <div class="faq-a"><p>Оплата и так поэтапная: платите за этап после его приёмки. Дополнительно работаем с рассрочкой банков-партнёров до 12 месяцев без переплаты.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section contact" id="contact">
+  <div class="wrap contact-grid">
+    <div class="rv">
+      <span class="blabel">Контакты</span>
+      <h2>Пришлите план — посчитаем за день</h2>
+      <p class="lead" style="margin-bottom:26px">Скиньте план квартиры из договора ДДУ — вернёмся с расчётом по каждому пакету и графиком работ.</p>
+      <div class="contact-info">
+        <div class="row"><b>Телефон</b><span>+7 900 000-00-00</span></div>
+        <div class="row"><b>Телеграм / WhatsApp</b><span>@novosel_remont</span></div>
+        <div class="row"><b>Офис</b><span>Москва, ул. Строителей, 5</span></div>
+        <div class="row"><b>Режим</b><span>Ежедневно, 9:00–21:00</span></div>
+      </div>
+    </div>
+    <form class="form rv" onsubmit="event.preventDefault();this.innerHTML='<h3>Спасибо! Заявка отправлена.</h3><p style=\'margin:0\'>Пришлём расчёт в течение рабочего дня.</p>'">
+      <h3>Расчёт по плану квартиры</h3>
+      <p>Бесплатно. План можно прислать позже в мессенджер.</p>
+      <label for="name">Имя</label>
+      <input id="name" type="text" placeholder="Как к вам обращаться" required>
+      <label for="phone">Телефон</label>
+      <input id="phone" type="tel" placeholder="+7 ___ ___-__-__" required>
+      <label for="msg">О квартире</label>
+      <textarea id="msg" rows="3" placeholder="Например: ЖК «Первый квартал», 52 м², ключи в октябре, нужен пакет под ключ"></textarea>
+      <div class="consent">
+        <input id="agree" type="checkbox" required>
+        <label for="agree">Я даю <a href="/soglasie.html" target="_blank" rel="noopener">согласие на обработку персональных данных</a> и подтверждаю, что ознакомлен с <a href="/politika.html" target="_blank" rel="noopener">политикой конфиденциальности</a>.</label>
+      </div>
+      <button type="submit" class="btn btn-blue">Получить расчёт
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-row">
+    <a href="#" class="logo" style="font-size:17px"><span class="k" style="width:24px;height:24px"></span>Новосёл</a>
+    <span class="footer-links">
+      <a href="/politika.html">Политика конфиденциальности</a>
+      <a href="/soglasie.html">Согласие на обработку данных</a>
+    </span>
+    <span>© 2026 ООО «Новосёл» · ИНН 0000000000 · ОГРН 0000000000000</span>
+  </div>
+</footer>
+
+<div class="cookie" id="cookie" role="dialog" aria-label="Использование cookie">
+  <p>Мы используем файлы cookie, чтобы сайт работал корректно и мы понимали, какие страницы вам полезны. Подробнее — в <a href="/politika.html">политике конфиденциальности</a>.</p>
+  <button class="btn btn-blue" id="cookieOk" type="button">Хорошо</button>
+</div>
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"HomeAndConstructionBusiness",
+  "name":"Новосёл",
+  "url":"https://novosel-remont.ru/",
+  "description":"Ремонт квартир в новостройках под ключ: приёмка у застройщика, фиксированные пакеты с ценой за м², сдача за 60 дней, гарантия 3 года.",
+  "telephone":"+7 900 000-00-00",
+  "email":"info@novosel-remont.ru",
+  "priceRange":"от 9900 ₽/м²",
+  "address":{"@type":"PostalAddress","addressLocality":"Москва","streetAddress":"ул. Строителей, 5","addressCountry":"RU"},
+  "areaServed":"Москва и Московская область",
+  "openingHours":"Mo-Su 09:00-21:00"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {"@type":"Question","name":"Квартира ещё не сдана. Когда обращаться?","acceptedAnswer":{"@type":"Answer","text":"Лучше за месяц до выдачи ключей: успеем сделать проект, посчитать смету и забронировать бригаду. На приёмку выйдем вместе с вами в день выдачи."}},
+    {"@type":"Question","name":"У меня отделка White Box от застройщика. Пакет будет дешевле?","acceptedAnswer":{"@type":"Answer","text":"Да, вы платите только за чистовую часть — от 11 000 ₽ за м². На замере проверим качество подготовки застройщика."}},
+    {"@type":"Question","name":"Дом ещё усаживается. Не потрескается ли ремонт?","acceptedAnswer":{"@type":"Answer","text":"Для новостроек используем технологии, рассчитанные на усадку: армирование штукатурки, скользящий каркас потолков, эластичные материалы в швах. На это даём гарантию 3 года."}},
+    {"@type":"Question","name":"Можно ли платить в рассрочку?","acceptedAnswer":{"@type":"Answer","text":"Оплата поэтапная: платите за этап после его приёмки. Дополнительно работаем с рассрочкой банков-партнёров до 12 месяцев."}}
+  ]
+}
+</script>
+
+<script>
+// cookie-уведомление
+(function(){
+  var box=document.getElementById('cookie'), ok=document.getElementById('cookieOk'), KEY='cookie_ok_v1';
+  var seen=false;
+  try{seen=localStorage.getItem(KEY)==='1'}catch(e){}
+  if(!seen)setTimeout(function(){box.classList.add('show')},900);
+  ok.addEventListener('click',function(){
+    box.classList.remove('show');
+    try{localStorage.setItem(KEY,'1')}catch(e){}
+  });
+})();
+document.querySelectorAll('.faq-q').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    var item=btn.parentElement, ans=item.querySelector('.faq-a');
+    var open=item.classList.toggle('open');
+    ans.style.maxHeight=open?ans.scrollHeight+'px':0;
+  });
+});
+var burger=document.getElementById('burger'), nav=document.getElementById('navLinks');
+burger.addEventListener('click',function(){nav.classList.toggle('open')});
+nav.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){nav.classList.remove('open')})});
+var io=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}});
+},{threshold:.1});
+document.querySelectorAll('.rv:not(.in)').forEach(function(el,i){
+  el.style.transitionDelay=(i%3)*70+'ms';io.observe(el);
+});
+</script>
+</body>
+</html>
