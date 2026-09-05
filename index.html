@@ -123,6 +123,31 @@ header{
 .stat b i{font-style:normal;color:var(--blue)}
 .stat span{font-size:13px;color:var(--ink-soft)}
 
+/* фото в герое */
+.hv{position:relative;margin:0}
+.hv img{
+  display:block;width:100%;height:clamp(340px,42vw,500px);object-fit:cover;
+  border-radius:18px;box-shadow:18px 18px 0 var(--blue-soft);
+}
+.hv-stamp{
+  position:absolute;right:20px;top:20px;transform:rotate(-4deg);
+  border:2px solid var(--orange);color:var(--orange);border-radius:6px;
+  font-family:'JetBrains Mono',monospace;font-size:10.5px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;padding:7px 12px;
+  background:rgba(255,255,255,.92);backdrop-filter:blur(4px);
+}
+.hv-card{
+  position:absolute;left:-14px;bottom:-24px;background:#fff;
+  border:1.5px solid var(--blue);border-radius:14px;padding:18px 22px;
+  box-shadow:0 22px 44px -22px rgba(16,24,40,.4);max-width:300px;
+}
+.hv-code{
+  display:block;font-family:'JetBrains Mono',monospace;font-size:10.5px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--orange);margin-bottom:8px;
+}
+.hv-card b{display:block;font-family:'Exo 2',sans-serif;font-size:17px;font-weight:800;margin-bottom:4px}
+.hv-price{font-size:13.5px;color:var(--ink-soft)}
+
 /* blueprint plan card */
 .bp{
   background:#fff;border:1.5px solid var(--blue);border-radius:16px;position:relative;
@@ -172,6 +197,36 @@ header{
   color:var(--blue);display:flex;align-items:center;justify-content:center;flex-shrink:0;
 }
 .accept-row .t small{display:block;font-weight:400;font-size:13px;color:var(--ink-soft)}
+
+/* результат: фото */
+.result-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:56px;align-items:center;margin-bottom:26px}
+.result-before{margin:0;position:relative}
+.result-before img{
+  display:block;width:100%;height:clamp(240px,26vw,320px);object-fit:cover;
+  border-radius:16px;filter:saturate(.75);
+}
+.result-before figcaption{
+  position:absolute;left:16px;bottom:16px;background:rgba(16,24,40,.78);color:#fff;
+  backdrop-filter:blur(4px);border-radius:100px;padding:7px 16px;
+  font-family:'JetBrains Mono',monospace;font-size:10.5px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;
+}
+.result-shots{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:16px}
+.shot{margin:0;position:relative;overflow:hidden;border-radius:16px}
+.shot img{
+  display:block;width:100%;height:260px;object-fit:cover;
+  transition:transform .5s ease;
+}
+.shot:hover img{transform:scale(1.05)}
+.shot figcaption{
+  position:absolute;left:14px;bottom:14px;color:#fff;font-weight:700;font-size:14px;
+  text-shadow:0 2px 10px rgba(0,0,0,.6);
+}
+.shot::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,transparent 45%,rgba(16,24,40,.6) 100%);
+}
+.shot:nth-child(2) img,.shot:nth-child(3) img{height:220px}
 
 /* packages */
 .plans{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
@@ -337,6 +392,11 @@ footer{padding:34px 0;font-size:13.5px;color:var(--ink-soft);border-top:1px soli
 @media(max-width:960px){
   .hero-grid,.contact-grid{grid-template-columns:1fr;gap:44px}
   .plans,.g-grid{grid-template-columns:1fr}
+  .result-grid{grid-template-columns:1fr;gap:32px}
+  .result-shots{grid-template-columns:1fr 1fr}
+  .shot img,.shot:nth-child(2) img,.shot:nth-child(3) img{height:200px}
+  .hv-card{left:0;bottom:-18px;max-width:none;position:relative;margin-top:14px}
+  .hv img{box-shadow:10px 10px 0 var(--blue-soft)}
   .tline{grid-template-columns:1fr;gap:26px}
   .tline::before{left:19px;right:auto;top:0;bottom:0;width:2px;height:auto;
     background:repeating-linear-gradient(180deg,var(--blue) 0 10px,transparent 10px 18px)}
@@ -368,6 +428,7 @@ footer{padding:34px 0;font-size:13.5px;color:var(--ink-soft);border-top:1px soli
     <a href="#" class="logo"><span class="k"></span>Новосёл</a>
     <ul class="nav-links" id="navLinks">
       <li><a href="#accept">Приёмка</a></li>
+      <li><a href="#result">Результат</a></li>
       <li><a href="#packages">Пакеты</a></li>
       <li><a href="#timeline">Сроки</a></li>
       <li><a href="#faq">Вопросы</a></li>
@@ -404,25 +465,15 @@ footer{padding:34px 0;font-size:13.5px;color:var(--ink-soft);border-top:1px soli
       </div>
     </div>
     <div class="rv in">
-      <div class="bp">
-        <div class="bp-head">
-          <span>Проект № 2043-Н</span>
-          <span>1:100</span>
-        </div>
-        <span class="stamp">Смета зафиксирована</span>
-        <div class="bp-plan">
-          <div class="room r1"><span>Гостиная · 18,4 м²</span></div>
-          <div class="room r2"><span>Кухня · 11,2 м²</span></div>
-          <div class="room r3"><span>Спальня · 14,8 м²</span></div>
-          <div class="room r4"><span>С/у · 4,6 м²</span></div>
-          <span class="bp-dim" style="left:12px;top:6px">6 400</span>
-          <span class="bp-dim" style="right:12px;bottom:6px">4 200</span>
-        </div>
-        <div class="bp-foot">
-          <span class="t">ЖК «Первый квартал» · 52 м² · пакет «Под ключ»</span>
-          <b>1 070 000 ₽ · 58 дней</b>
-        </div>
-      </div>
+      <figure class="hv">
+        <img src="img/hero.webp" width="1600" height="1066" alt="Светлая гостиная в квартире после ремонта под ключ" fetchpriority="high" decoding="async">
+        <span class="hv-stamp">Смета зафиксирована</span>
+        <figcaption class="hv-card">
+          <span class="hv-code">Проект № 2043-Н · ЖК «Первый квартал»</span>
+          <b>52 м² · пакет «Под ключ»</b>
+          <span class="hv-price">1 070 000 ₽ · сдан за 58 дней</span>
+        </figcaption>
+      </figure>
     </div>
   </div>
 </section>
@@ -437,7 +488,44 @@ footer{padding:34px 0;font-size:13.5px;color:var(--ink-soft);border-top:1px soli
   </div>
 </div>
 
-<section class="section" id="packages">
+<section class="section" id="result">
+  <div class="wrap">
+    <div class="result-grid">
+      <div class="result-intro rv">
+        <span class="blabel">Результат</span>
+        <h2>Из бетона — в квартиру, куда можно завозить мебель</h2>
+        <p class="lead">В пакет «Под ключ» входит вся отделка: стены, полы, потолки, электрика, сантехника, двери и свет. Вам остаётся только заехать.</p>
+        <a href="#contact" class="btn btn-blue" style="margin-top:26px">Рассчитать по плану квартиры
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+      <figure class="result-before rv">
+        <img src="img/before.webp" width="1200" height="710" alt="Пустая квартира в новостройке до начала ремонта" loading="lazy" decoding="async">
+        <figcaption>Так квартиру передаёт застройщик</figcaption>
+      </figure>
+    </div>
+    <div class="result-shots">
+      <figure class="shot rv">
+        <img src="img/work-1.webp" width="1000" height="666" alt="Гостиная после ремонта под ключ" loading="lazy" decoding="async">
+        <figcaption>Гостиная</figcaption>
+      </figure>
+      <figure class="shot rv">
+        <img src="img/work-2.webp" width="1000" height="668" alt="Кухня после ремонта под ключ" loading="lazy" decoding="async">
+        <figcaption>Кухня</figcaption>
+      </figure>
+      <figure class="shot rv">
+        <img src="img/work-3.webp" width="1000" height="666" alt="Спальня после ремонта под ключ" loading="lazy" decoding="async">
+        <figcaption>Спальня</figcaption>
+      </figure>
+      <figure class="shot rv">
+        <img src="img/work-4.webp" width="1000" height="666" alt="Столовая зона после ремонта под ключ" loading="lazy" decoding="async">
+        <figcaption>Столовая</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="packages" style="padding-top:0">
   <div class="wrap">
     <div class="section-head rv">
       <span class="blabel">Пакеты</span>
