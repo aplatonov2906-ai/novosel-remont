@@ -389,6 +389,32 @@ footer{padding:34px 0;font-size:13.5px;color:var(--ink-soft);border-top:1px soli
 .footer-links a{color:var(--ink-soft);text-decoration:underline}
 .footer-links a:hover{color:var(--blue)}
 
+/* ---- мобильная оптимизация ---- */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+a,button,input,textarea{-webkit-tap-highlight-color:rgba(36,86,214,.15)}
+.btn,button,a{touch-action:manipulation}
+@media(max-width:640px){
+  /* 16px — иначе iOS зумит страницу при фокусе на поле */
+  .form input,.form textarea{font-size:16px}
+  /* тач-зоны не меньше 44px */
+  .burger{padding:11px;margin-right:-11px}
+  .nav-links a{display:block;padding:10px 0}
+  .footer-links a{display:inline-block;padding:7px 0}
+  .contact-info .row a{display:inline-block;padding:4px 0}
+  .consent input{width:22px;height:22px}
+  .consent label{font-size:13px}
+  /* компактный cookie-баннер */
+  .cookie{left:10px;right:10px;bottom:10px;padding:16px 18px;gap:12px;border-radius:12px}
+  .cookie p{font-size:13px}
+  .cookie .btn{width:100%;padding:13px 20px}
+  /* фото не перегружают экран */
+  .hv img{height:280px}
+  .result-shots{grid-template-columns:1fr 1fr;gap:10px}
+  .shot img,.shot:nth-child(2) img,.shot:nth-child(3) img{height:150px}
+  .shot figcaption{font-size:13px;left:10px;bottom:10px}
+  .result-before img{height:220px}
+}
+
 @media(max-width:960px){
   .hero-grid,.contact-grid{grid-template-columns:1fr;gap:44px}
   .plans,.g-grid{grid-template-columns:1fr}
