@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Страница не найдена — Новосёл</title>
+<meta name="robots" content="noindex, follow">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@700;800&family=Golos+Text:wght@400;500;600&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fbfcfe;--tint:#f2f5fc;--ink:#101828;--ink-soft:#5b6474;--line:#dde4f0;--blue:#2456d6;--orange:#f57f2c}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:'Golos Text',system-ui,sans-serif;background:var(--bg);color:var(--ink);
+  line-height:1.65;min-height:100vh;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;text-align:center;padding:40px 24px;position:relative;
+}
+body::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:
+    linear-gradient(var(--line) 1px,transparent 1px),
+    linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:80px 80px;
+  -webkit-mask-image:radial-gradient(600px 400px at 50% 40%,#000 10%,transparent 75%);
+          mask-image:radial-gradient(600px 400px at 50% 40%,#000 10%,transparent 75%);
+}
+.inner{position:relative}
+.code{
+  font-family:'Exo 2',sans-serif;font-size:clamp(72px,16vw,150px);font-weight:800;
+  letter-spacing:-.03em;line-height:1;color:var(--blue);margin-bottom:6px;
+}
+.stamp{
+  display:inline-block;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--orange);
+  border:2px solid var(--orange);border-radius:6px;padding:6px 13px;margin-bottom:22px;
+  transform:rotate(-2deg);
+}
+h1{font-family:'Exo 2',sans-serif;font-size:clamp(22px,3.4vw,30px);font-weight:800;letter-spacing:-.01em;margin-bottom:12px}
+p{color:var(--ink-soft);max-width:440px;margin:0 auto 32px}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;background:var(--blue);color:#fff;
+  padding:15px 30px;border-radius:10px;font-weight:700;font-size:15px;text-decoration:none;
+  transition:background .2s;
+}
+.btn:hover{background:#1a41a8}
+.links{margin-top:28px;font-size:13.5px;color:var(--ink-soft);display:flex;gap:18px;flex-wrap:wrap;justify-content:center}
+.links a{color:var(--ink-soft)}
+</style>
+</head>
+<body>
+  <div class="inner">
+    <div class="code">404</div>
+    <div class="stamp">Страница не найдена</div>
+    <h1>Такой страницы нет в проекте</h1>
+    <p>Возможно, она была перемещена или в адресе опечатка. Вернитесь на главную — там пакеты, сроки и расчёт стоимости.</p>
+    <a class="btn" href="/">На главную
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+    <div class="links">
+      <a href="/#packages">Пакеты</a>
+      <a href="/#contact">Контакты</a>
+      <a href="tel:+74950199675">+7 (495) 019-96-75</a>
+    </div>
+  </div>
+</body>
+</html>

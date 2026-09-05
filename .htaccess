@@ -1,0 +1,54 @@
+# ---------- Кодировка ----------
+AddDefaultCharset UTF-8
+
+# ---------- Страница 404 ----------
+ErrorDocument 404 /404.html
+
+# ---------- Запрет листинга каталогов ----------
+Options -Indexes
+
+# ---------- Сжатие ----------
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css text/xml
+  AddOutputFilterByType DEFLATE application/javascript application/x-javascript
+  AddOutputFilterByType DEFLATE application/xml application/xhtml+xml
+  AddOutputFilterByType DEFLATE application/json image/svg+xml
+</IfModule>
+
+# ---------- Кэширование в браузере ----------
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/html "access plus 1 hours"
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType font/woff2 "access plus 1 year"
+</IfModule>
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.(css|js|svg|webp|jpg|jpeg|png|woff2)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  Header set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# ---------- Редиректы ----------
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # www -> без www
+  RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+  RewriteRule ^ https://%1%{REQUEST_URI} [R=301,L]
+
+  # HTTP -> HTTPS
+  # ВНИМАНИЕ: раскомментировать ТОЛЬКО после выпуска SSL-сертификата
+  # в панели Beget, иначе сайт станет недоступен.
+  # RewriteCond %{HTTPS} !=on
+  # RewriteCond %{HTTP:X-Forwarded-Proto} !https
+  # RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+</IfModule>
