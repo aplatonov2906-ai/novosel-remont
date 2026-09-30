@@ -389,6 +389,15 @@ footer{padding:34px 0;font-size:13.5px;color:var(--ink-soft);border-top:1px soli
 .footer-links a{color:var(--ink-soft);text-decoration:underline}
 .footer-links a:hover{color:var(--blue)}
 
+/* форма: ловушка для ботов и сообщение о статусе */
+.hp{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden}
+.form-note{
+  margin:14px 0 0;font-size:13.5px;line-height:1.5;text-align:center;min-height:1px;
+}
+.form-note.err{color:#c23b22}
+.form-note.ok{color:#1f8a4c}
+.form button[disabled]{opacity:.65;cursor:progress}
+
 /* ---- мобильная оптимизация ---- */
 html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 a,button,input,textarea{-webkit-tap-highlight-color:rgba(36,86,214,.15)}
@@ -798,22 +807,27 @@ a,button,input,textarea{-webkit-tap-highlight-color:rgba(36,86,214,.15)}
         <div class="row"><b>Режим</b><span>Ежедневно, 9:00–21:00</span></div>
       </div>
     </div>
-    <form class="form rv" onsubmit="event.preventDefault();this.innerHTML='<h3>Спасибо! Заявка отправлена.</h3><p style=\'margin:0\'>Пришлём расчёт в течение рабочего дня.</p>'">
+    <form class="form rv" id="leadForm" action="/send.php" method="post" novalidate>
       <h3>Расчёт стоимости отделки</h3>
       <p>Бесплатно. Замер — в удобный вам день, включая выходные.</p>
       <label for="name">Имя</label>
-      <input id="name" type="text" placeholder="Как к вам обращаться" required>
+      <input id="name" name="name" type="text" autocomplete="name" placeholder="Как к вам обращаться" required>
       <label for="phone">Телефон</label>
-      <input id="phone" type="tel" placeholder="+7 ___ ___-__-__" required>
+      <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="+7 ___ ___-__-__" required>
       <label for="msg">Что нужно сделать</label>
-      <textarea id="msg" rows="3" placeholder="Например: двушка 52 м², черновая готова, нужны обои, ламинат и плитка в санузле"></textarea>
+      <textarea id="msg" name="message" rows="3" placeholder="Например: двушка 52 м², черновая готова, нужны обои, ламинат и плитка в санузле"></textarea>
+      <div class="hp" aria-hidden="true">
+        <label for="company">Не заполняйте это поле</label>
+        <input id="company" name="company" type="text" tabindex="-1" autocomplete="off">
+      </div>
       <div class="consent">
         <input id="agree" type="checkbox" required>
         <label for="agree">Я даю <a href="/soglasie.html" target="_blank" rel="noopener">согласие на обработку персональных данных</a> и подтверждаю, что ознакомлен с <a href="/politika.html" target="_blank" rel="noopener">политикой конфиденциальности</a>.</label>
       </div>
-      <button type="submit" class="btn btn-blue">Получить расчёт
+      <button type="submit" class="btn btn-blue" id="leadBtn">Получить расчёт
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </button>
+      <p class="form-note" id="leadNote" role="status" aria-live="polite"></p>
     </form>
   </div>
 </section>
@@ -863,6 +877,49 @@ a,button,input,textarea{-webkit-tap-highlight-color:rgba(36,86,214,.15)}
 </script>
 
 <script>
+// отправка заявки в CRM через /send.php
+(function(){
+  var form=document.getElementById('leadForm');
+  if(!form)return;
+  var btn=document.getElementById('leadBtn'), note=document.getElementById('leadNote');
+  var label=btn.innerHTML;
+
+  function say(text,cls){ note.textContent=text; note.className='form-note'+(cls?' '+cls:''); }
+
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    if(!form.checkValidity()){ form.reportValidity(); return; }
+
+    var payload={
+      name:    form.name.value.trim(),
+      phone:   form.phone.value.trim(),
+      message: form.message.value.trim(),
+      company: form.company.value
+    };
+
+    btn.disabled=true; btn.textContent='Отправляем…'; say('');
+
+    fetch(form.action,{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(payload)
+    })
+    .then(function(r){ return r.json().catch(function(){ return {ok:r.ok}; }); })
+    .then(function(res){
+      if(res && res.ok){
+        form.innerHTML='<h3>Спасибо! Заявка принята.</h3>'+
+          '<p style="margin:0">Перезвоним в рабочее время и согласуем удобный день для замера.</p>';
+        return;
+      }
+      throw new Error((res && res.error) || 'Не удалось отправить заявку');
+    })
+    .catch(function(err){
+      btn.disabled=false; btn.innerHTML=label;
+      say(err.message+'. Можно просто позвонить: +7 (495) 019-96-75','err');
+    });
+  });
+})();
+
 // cookie-уведомление
 (function(){
   var box=document.getElementById('cookie'), ok=document.getElementById('cookieOk'), KEY='cookie_ok_v1';
